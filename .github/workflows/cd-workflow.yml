@@ -8,6 +8,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+name: Docker CD
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
       - uses: actions/checkout@v1
       - name: npm install and build webpack
         run: |
@@ -16,34 +26,11 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: webpack artifacts
-          path: dist/cottageform/
-  test:
-    runs-on: ubuntu-latest
-    needs: build
-    strategy:
-      matrix:
-        os: [ubuntu-lastest, windows-2016]
-        node-version: [12.x, 14.x]
-
-    steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - uses: actions/download-artifact@master
-        with:
-          name: webpack artifacts
           path: public
-      - name: npm install, and test
-        run: |
-          npm install
-          npm test
-        env:
-          CI: true
+  
   Build-and-Push-Docker-Image:
     runs-on: ubuntu-latest
-    needs: test
+    needs: build
     name: Docker Build, Tag, Push
 
     steps:
