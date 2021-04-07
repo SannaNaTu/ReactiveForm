@@ -47,4 +47,18 @@ describe('FormComponent', () => {
     expect(component.firstName.errors.maxlength).toBeDefined();
   }));
 });
+  describe('personId', () => {
+    it('should be real ID', async(() => {
+      component.personId.setValue('120464-126J');
+
+      expect(component.personId.valid).toBeTruthy();
+    }));
+
+    it('should be required', async(() => {
+      expect(component.personId.errors.required).toBeDefined();
+
+      component.personId.setValue('123456-1234');
+      expect(component.personId.errors.required).toBeUndefined();
+    }));
+  });
 });

@@ -29,7 +29,6 @@
            placeholder="personId"
            [formControl]="personId">
     <mat-error *ngIf="personId.hasError('required')">Enter your ID</mat-error>
-    <mat-error *ngIf="personId.hasError('minlength')">Minimun 6 charaters</mat-error>
     <mat-error *ngIf="personId.hasError('pattern')">Not real ID</mat-error>
   </mat-form-field>
 
