@@ -1,19 +1,23 @@
 <div class="conteiner">
+  <span>Product app is running!</span>
 <h3>Day in the Santa Claus Cottage:</h3>
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 
   <mat-form-field class="field-full-width">
     <input matInput
+           class="form-group"
            placeholder="firstName"
-           formControlName="firstName">
+
+           [formControl]="firstName">
     <mat-error *ngIf="firstName.hasError('required')">Enter your first name</mat-error>
     <mat-error *ngIf="firstName.hasError('minlength')">Minimun 2 charaters</mat-error>
+    <mat-error *ngIf="firstName.hasError('maxlength')">Max 10 charaters</mat-error>
   </mat-form-field>
   <mat-form-field class="field-full-width">
     <input matInput
-
-           formControlName="lastName"
-           placeholder="lastName">
+           class="form-group"
+           placeholder="lastName"
+           [formControl]="lastName">
     <mat-error *ngIf="lastName.hasError('required')">Enter last name</mat-error>
     <mat-error *ngIf="lastName.hasError('minlength')">Minumum 2 characters</mat-error>
   </mat-form-field>
@@ -21,9 +25,9 @@
 
   <mat-form-field class="field-full-width">
     <input matInput
-
-           formControlName="personId"
-           placeholder="personId">
+           class="form-group"
+           placeholder="personId"
+           [formControl]="personId">
     <mat-error *ngIf="personId.hasError('required')">Enter your ID</mat-error>
     <mat-error *ngIf="personId.hasError('minlength')">Minimun 6 charaters</mat-error>
     <mat-error *ngIf="personId.hasError('pattern')">Not real ID</mat-error>
@@ -31,22 +35,26 @@
 
   <mat-form-field class="field-full-width">
     <input matInput
-           formControlName="eMail"
-           placeholder="eMail">
+           class="form-group"
+           placeholder="eMail"
+           [formControl]="eMail">
     <mat-error *ngIf="eMail.hasError('required')">Enter your email</mat-error>
     <mat-error *ngIf="eMail.hasError('minlength')">Minimun 2 charaters</mat-error>
     <mat-error *ngIf="eMail.hasError('email')">Not real Email</mat-error>
   </mat-form-field>
   <mat-form-field class="full-width-field">
     <input matInput [matDatepicker]="pickerDate"
-           placeholder="Choose a day">
+           class="form-group"
+           placeholder="Choose a day"
+           [formControl]="pickerDate">
     <mat-datepicker-toggle matSuffix [for]="pickerDate"></mat-datepicker-toggle>
     <mat-datepicker #pickerDate></mat-datepicker>
   </mat-form-field>
 
   <div>
     <mat-checkbox
-      formControlName="termsAndConditions">
+      formControlName="termsAndConditions"
+      [formControl]="termsAndConditions">
 
       Accept terms and conditions
 
@@ -58,17 +66,5 @@
     <button mat-raised-button class="btn"  type="button" [disabled]="!termsAndConditions.valid" (click)="onSubmit()">Varaa</button>
   </div>
 </form>
-  <div>
-    <br>
-    <br>
-    <br>
-    <p>Github actions harjoitustyö:
-      <br>
-      -Ohjelmiston kääntäminen
-      <br>
-      -Testaaminen
-      <br>
-      -Docker Imagen luonti & julkaisu</p>
-  </div>
 </div>
 
