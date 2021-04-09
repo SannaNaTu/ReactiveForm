@@ -3,8 +3,6 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import { FormComponent } from './form.component';
 import {FormBuilder, FormGroup, ReactiveFormsModule, FormControl} from '@angular/forms';
 
-
-
 describe('FormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,11 +22,10 @@ describe('FormComponent', () => {
     component.ngOnInit();
   });
 
-
   describe('firstName', () => {
-  it('should be valid with more than 2 characters', async(() => {
-    component.firstName.setValue('aaaaaaa');
 
+  it('should be valid with more than 2 characters', async(() => {
+    component.firstName.setValue('aaa');
     expect(component.firstName.valid).toBeTruthy();
   }));
 

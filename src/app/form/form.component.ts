@@ -33,8 +33,6 @@ export class FormComponent implements OnInit {
       termsAndConditions : this.termsAndConditions
     });
   }
-
-
   public onSubmit(): void {
     if (this.profileForm.valid) {console.log('valid');
     }else
